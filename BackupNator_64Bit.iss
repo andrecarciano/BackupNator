@@ -2,21 +2,21 @@
 
 [Setup]
 AppName=BackupNator
-AppVersion=1.0.0.6
+AppVersion=1.0.0.7
 DefaultDirName={pf64}\BackupNator
 DefaultGroupName=BackupNator
-OutputBaseFilename=BackupNatorSetup_x64_1.0.0.6
+OutputBaseFilename=BackupNatorSetup_x64_1.0.0.7
 Compression=lzma
 SolidCompression=yes
 PrivilegesRequired=admin
-SetupIconFile=C:\Users\Andrezinho\source\repos\BackupNator\BackupNatorApp\Image\icon.ico
+SetupIconFile=C:\Users\Andrezinho\Documents\GitHub\BackupNator\BackupNatorApp\Image\icon.ico
 
 [InstallDelete]
 Type: filesandordirs; Name: "{app}"
 
 [Files]
 // Copia todos os arquivos da pasta publish 
-Source: "C:\Users\Andrezinho\source\repos\BackupNator\BackupNatorApp\bin\Release\net8.0-windows\publish\win-x64\*"; DestDir: "{app}"; Flags: recursesubdirs createallsubdirs
+Source: "C:\Users\Andrezinho\Documents\GitHub\BackupNator\BackupNatorApp\bin\Release\net8.0-windows\publish\win-x64\*"; DestDir: "{app}"; Flags: recursesubdirs createallsubdirs
 
 [Icons]
 //Atalho no menu Iniciar
