@@ -2,10 +2,10 @@
 
 [Setup]
 AppName=BackupNator
-AppVersion=1.0.0.7
+AppVersion=1.0.1.0
 DefaultDirName={pf64}\BackupNator
 DefaultGroupName=BackupNator
-OutputBaseFilename=BackupNatorSetup_x64_1.0.0.7
+OutputBaseFilename=BackupNatorSetup_x64_1.0.1.0
 Compression=lzma
 SolidCompression=yes
 PrivilegesRequired=admin
