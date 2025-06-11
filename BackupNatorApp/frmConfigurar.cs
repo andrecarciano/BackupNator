@@ -36,8 +36,9 @@ namespace BackupNatorApp
         private void CarregarConfiguracao(string nomeArquivoConfig = "appsettings.json")
         {
 
-            RegistryKey? chave = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run", true);
-            chkIniciaWindows.Checked = chave?.GetValueNames().Contains("BackupNatorApp") ?? false;
+            //RegistryKey? chave = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run", true);
+            //chkIniciaWindows.Checked = chave?.GetValueNames().Contains("BackupNatorApp") ?? false;
+            chkIniciaWindows.Checked = VerificarTarefaExiste("BackupNatorApp");
 
             string caminho = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                                             "BackupNator",
@@ -291,6 +292,30 @@ namespace BackupNatorApp
             }
         }
 
+        public bool VerificarTarefaExiste(string nomeTarefa)
+        {
+            try
+            {
+                TaskScheduler.TaskScheduler ts = new TaskScheduler.TaskScheduler();
+                ts.Connect();
+
+                ITaskFolder pastaRaiz = ts.GetFolder("\\");
+                IRegisteredTask tarefa = pastaRaiz.GetTask(nomeTarefa);
+
+                return tarefa != null;
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                // A tarefa não existe
+                return false;
+            }
+            catch (Exception ex)
+            {
+                // Outro erro inesperado
+                MessageBox.Show($"Erro ao verificar a tarefa: {ex.Message}");
+                return false;
+            }
+        }
 
         private void numericUpDown1_Change(object sender, EventArgs e)
         {
