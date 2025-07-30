@@ -79,6 +79,8 @@ namespace BackupNatorApp
             _config.Origens = listBoxOrigens.Items.Cast<string>().ToList();
             _config.Destinos = listBoxDestinos.Items.Cast<string>().ToList();
             _config.NomePastaBackup = txtNomePadraoPasta.Text;
+            _config.IntervaloBackup = numericUpDown1.Value;
+            _config.BackupAoIniciar = chkBackupAoLigar.Checked;
 
             string caminhoPastaDados = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                                             "BackupNator"
@@ -245,6 +247,11 @@ namespace BackupNatorApp
             }
         }
 
+        private void chkBackupAoLigar_CheckedChanged(object sender, EventArgs e)
+        {
+            SalvarConfiguracao();
+        }
+
         private void CriarTarefaAgendada(string nomeTarefa, string caminhoExe)
         {
             TaskScheduler.TaskScheduler ts = new TaskScheduler.TaskScheduler();
@@ -319,7 +326,6 @@ namespace BackupNatorApp
 
         private void numericUpDown1_Change(object sender, EventArgs e)
         {
-            _config.IntervaloBackup = numericUpDown1.Value;
             SalvarConfiguracao();
         }
 

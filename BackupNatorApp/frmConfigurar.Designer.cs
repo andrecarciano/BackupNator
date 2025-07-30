@@ -49,6 +49,7 @@
             label6 = new Label();
             chkIniciaWindows = new CheckBox();
             panel1 = new Panel();
+            chkBackupAoLigar = new CheckBox();
             panel2 = new Panel();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
@@ -261,7 +262,7 @@
             // chkIniciaWindows
             // 
             chkIniciaWindows.AutoSize = true;
-            chkIniciaWindows.Location = new Point(403, 64);
+            chkIniciaWindows.Location = new Point(416, 42);
             chkIniciaWindows.Name = "chkIniciaWindows";
             chkIniciaWindows.Size = new Size(147, 19);
             chkIniciaWindows.TabIndex = 29;
@@ -271,6 +272,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(chkBackupAoLigar);
             panel1.Controls.Add(txtNomePadraoPasta);
             panel1.Controls.Add(chkIniciaWindows);
             panel1.Controls.Add(label3);
@@ -283,6 +285,17 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(575, 98);
             panel1.TabIndex = 30;
+            // 
+            // chkBackupAoLigar
+            // 
+            chkBackupAoLigar.AutoSize = true;
+            chkBackupAoLigar.Location = new Point(416, 66);
+            chkBackupAoLigar.Name = "chkBackupAoLigar";
+            chkBackupAoLigar.Size = new Size(110, 19);
+            chkBackupAoLigar.TabIndex = 30;
+            chkBackupAoLigar.Text = "Backup ao Ligar";
+            chkBackupAoLigar.UseVisualStyleBackColor = true;
+            chkBackupAoLigar.CheckedChanged += chkBackupAoLigar_CheckedChanged;
             // 
             // panel2
             // 
@@ -350,5 +363,6 @@
         private CheckBox chkIniciaWindows;
         private Panel panel1;
         private Panel panel2;
+        private CheckBox chkBackupAoLigar;
     }
 }

@@ -13,6 +13,8 @@ namespace BackupNatorApp
             NomePastaBackup = "Pasta_Backup_Padrao";
 
             IntervaloBackup = 0;
+
+            BackupAoIniciar = false;
         }
 
         public List<string> Origens { get; set; }
@@ -20,5 +22,6 @@ namespace BackupNatorApp
         public string NomePastaBackup { get; set; }
         public DateTime? UltimoBackup { get; set; }
         public decimal IntervaloBackup { get; set; }
+        public bool BackupAoIniciar { get; set; }
     }
 }

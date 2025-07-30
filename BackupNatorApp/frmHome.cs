@@ -18,7 +18,9 @@ namespace BackupNatorApp
             frmConfig.FormClosing += FrmConfig_FormClosing;
             InitializeComponent();
             CarregarConfiguracao();
+            BackupAoIniciar();
         }
+
         private void IniciarTimer()
         {
             if (_config.IntervaloBackup > 0)
@@ -31,16 +33,22 @@ namespace BackupNatorApp
             }
         }
 
-        private void TimerHora_Elapsed(object? sender, ElapsedEventArgs e)
+        private void BackupAoIniciar()
         {
-            ExecutarTarefa();
+            if (_config.BackupAoIniciar)
+                IniciarBackup();
         }
 
-        private void ExecutarTarefa()
+        private void TimerHora_Elapsed(object? sender, ElapsedEventArgs e)
+        {
+            IniciarBackup();
+        }
+
+        private void IniciarBackup()
         {
             Invoke(() =>
             {
-                IniciaBackup(true);
+                RealizarBackup(true);
             });
 
         }
@@ -52,10 +60,10 @@ namespace BackupNatorApp
 
         private void btnExecutarBackup_Click(object sender, EventArgs e)
         {
-            IniciaBackup();
+            IniciarBackup();
         }
 
-        private async void IniciaBackup(bool automatico = false)
+        private async void RealizarBackup(bool automatico = false)
         {
             notifyIcon1.ShowBalloonTip(1000, "BackupNator", "Realizando Backup em segundo plano...", ToolTipIcon.Info);
             pastasVisitadas = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -109,6 +117,8 @@ namespace BackupNatorApp
                 }
                 catch (Exception ex)
                 {
+                    rtxtPastasSalvas.AppendText($"Erro ao copiar arquivos: {ex.Message}");
+                    GeraLog();
                     MessageBox.Show($"Erro ao copiar arquivos: {ex.Message}");
                     return;
                 }
@@ -122,7 +132,7 @@ namespace BackupNatorApp
                 rtxtPastasSalvas.AppendText($@"Backup Concluído em: {_config.UltimoBackup}");
                 lblStatus.Text = $@"Backup Concluído em: {_config.UltimoBackup}";
                 lblUtimoBackup.Text = lblUtimoBackup.Text = $@"Ultimo Backup: {_config.UltimoBackup}";
-                MessageBox.Show("Backup concluído com sucesso!");
+                notifyIcon1.ShowBalloonTip(3000, "BackupNator", "Backup concluído com sucesso!", ToolTipIcon.Info);
                 GeraLog();
             }
         }
