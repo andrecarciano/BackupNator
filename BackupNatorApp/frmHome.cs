@@ -18,6 +18,10 @@ namespace BackupNatorApp
             frmConfig.FormClosing += FrmConfig_FormClosing;
             InitializeComponent();
             CarregarConfiguracao();
+        }
+
+        private void frmHome_Load(object sender, EventArgs e)
+        {
             BackupAoIniciar();
         }
 

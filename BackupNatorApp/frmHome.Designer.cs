@@ -62,7 +62,7 @@
             btnExecutarBackup.Cursor = Cursors.Hand;
             btnExecutarBackup.Image = Properties.Resources.backupbtn;
             btnExecutarBackup.ImageAlign = ContentAlignment.MiddleLeft;
-            btnExecutarBackup.Location = new Point(282, 199);
+            btnExecutarBackup.Location = new Point(282, 223);
             btnExecutarBackup.Name = "btnExecutarBackup";
             btnExecutarBackup.Size = new Size(110, 45);
             btnExecutarBackup.TabIndex = 6;
@@ -95,7 +95,7 @@
             // configurarToolStripMenuItem
             // 
             configurarToolStripMenuItem.Name = "configurarToolStripMenuItem";
-            configurarToolStripMenuItem.Size = new Size(180, 22);
+            configurarToolStripMenuItem.Size = new Size(151, 22);
             configurarToolStripMenuItem.Text = "Configurações";
             configurarToolStripMenuItem.Click += configurarToolStripMenuItem_Click;
             // 
@@ -134,9 +134,9 @@
             // 
             panel2.Controls.Add(panel3);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 24);
+            panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(520, 258);
+            panel2.Size = new Size(520, 282);
             panel2.TabIndex = 14;
             // 
             // panel3
@@ -150,7 +150,7 @@
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(520, 258);
+            panel3.Size = new Size(520, 282);
             panel3.TabIndex = 14;
             // 
             // btnLimpaLog
@@ -160,7 +160,7 @@
             btnLimpaLog.Cursor = Cursors.Hand;
             btnLimpaLog.Image = Properties.Resources.EXCLUDEICON;
             btnLimpaLog.ImageAlign = ContentAlignment.MiddleLeft;
-            btnLimpaLog.Location = new Point(10, 199);
+            btnLimpaLog.Location = new Point(10, 223);
             btnLimpaLog.Name = "btnLimpaLog";
             btnLimpaLog.Size = new Size(110, 45);
             btnLimpaLog.TabIndex = 14;
@@ -186,7 +186,7 @@
             btnVerBackups.Cursor = Cursors.Hand;
             btnVerBackups.Image = Properties.Resources.view;
             btnVerBackups.ImageAlign = ContentAlignment.MiddleLeft;
-            btnVerBackups.Location = new Point(398, 199);
+            btnVerBackups.Location = new Point(398, 223);
             btnVerBackups.Name = "btnVerBackups";
             btnVerBackups.Size = new Size(110, 45);
             btnVerBackups.TabIndex = 7;
@@ -270,6 +270,7 @@
             Text = "BackupNator 1.0";
             WindowState = FormWindowState.Minimized;
             FormClosing += frmHome_FormClosing;
+            Load += frmHome_Load;
             KeyDown += frmHome_KeyDown;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
