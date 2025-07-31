@@ -65,9 +65,15 @@ namespace BackupNatorApp
             foreach (var destino in _config.Destinos)
                 listBoxDestinos.Items.Add(destino);
 
-            numericUpDown1.Value = _config.IntervaloBackup;
-            txtNomePadraoPasta.Text = _config.NomePastaBackup;
-            chkBackupAoLigar.Checked = _config.BackupAoIniciar;
+            //salva o estado da configuração antes de atribuir aos controles,
+            //por conta dos gatilhos que sao acionados ao altera-los
+            decimal intervalo = _config.IntervaloBackup;
+            string? pastBackup = _config.NomePastaBackup;
+            bool bkpAoIniciar = _config.BackupAoIniciar;
+
+            numericUpDown1.Value = intervalo;
+            txtNomePadraoPasta.Text = pastBackup;
+            chkBackupAoLigar.Checked = bkpAoIniciar;
             panel1.Update();
             appLoad = false;
         }
