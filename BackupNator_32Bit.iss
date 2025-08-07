@@ -2,10 +2,10 @@
 
 [Setup]
 AppName=BackupNator_x86
-AppVersion=1.0.1.1
+AppVersion=1.0.1.2
 DefaultDirName={pf32}\BackupNator_x86
 DefaultGroupName=BackupNator_x86
-OutputBaseFilename=BackupNatorSetup_x86_1.0.1.1
+OutputBaseFilename=BackupNatorSetup_x86_1.0.1.2
 Compression=lzma
 SolidCompression=yes
 PrivilegesRequired=admin

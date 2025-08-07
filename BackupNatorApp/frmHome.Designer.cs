@@ -270,7 +270,6 @@
             Text = "BackupNator 1.0";
             WindowState = FormWindowState.Minimized;
             FormClosing += frmHome_FormClosing;
-            Load += frmHome_Load;
             KeyDown += frmHome_KeyDown;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();

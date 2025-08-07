@@ -20,32 +20,28 @@ namespace BackupNatorApp
             CarregarConfiguracao();
         }
 
-        private void frmHome_Load(object sender, EventArgs e)
+        private void IniciarTimer(bool verificarConfigIntervalo = true)
         {
-            BackupAoIniciar();
-        }
-
-        private void IniciarTimer()
-        {
-            if (_config.IntervaloBackup > 0)
-            {
-                timer = new System.Timers.Timer();
+            timer = new System.Timers.Timer();
+            timer.Elapsed += TimerHora_Elapsed;
+            //timer.AutoReset = verificarConfigIntervalo;
+            
+            if (_config.IntervaloBackup > 0 && verificarConfigIntervalo){
                 timer.Interval = (double)_config.IntervaloBackup * 60 * 1000; //milissegundos
-                timer.Elapsed += TimerHora_Elapsed;
-                timer.AutoReset = true;
                 timer.Enabled = true;
             }
-        }
-
-        private void BackupAoIniciar()
-        {
-            if (_config.BackupAoIniciar)
-                IniciarBackup();
+            else if (!verificarConfigIntervalo)
+            {
+                timer.Interval = 5 * 60 * 1000; //5 minutos em milissegundos
+                timer.Enabled = true;
+            }
         }
 
         private void TimerHora_Elapsed(object? sender, ElapsedEventArgs e)
         {
             IniciarBackup();
+            if (_config.IntervaloBackup > 0)
+                IniciarTimer();
         }
 
         private void IniciarBackup()
@@ -124,6 +120,7 @@ namespace BackupNatorApp
                     rtxtPastasSalvas.AppendText($"Erro ao copiar arquivos: {ex.Message}");
                     GeraLog();
                     MessageBox.Show($"Erro ao copiar arquivos: {ex.Message}");
+                    IniciarTimer(false);
                     return;
                 }
                 finally
@@ -190,7 +187,7 @@ namespace BackupNatorApp
             this._config = this.frmConfig._config;
             lblUtimoBackup.Text = $@"Ultimo Backup: {_config.UltimoBackup}";
             panel2.Update();
-            IniciarTimer();
+            IniciarTimer(!_config.BackupAoIniciar);
         }
 
         private void frmHome_KeyDown(object sender, KeyEventArgs e)
